@@ -1,14 +1,15 @@
-const express = require("express");
+import bodyParser from "body-parser";
 
-const PORT = process.env.PORT || 3000;
+import calculateRoutes from "./routes/calculate.js";
 
 const app = express();
+const PORT = 3000;
 
-app.get("/api", (req, res) => {
-	  res.json({ message: "Hello from server!" });
-});
+app.use(bodyParser.json());
 
-app.listen(PORT, () => {
-	  console.log(`Server listening on ${PORT}`);
-});
+app.use("/calculate", calculateRoutes);
+app.get("/", (req, res) => res.send("Welcome to the Configuration API!"));
 
+app.all("*", (req, res) =>res.send("You've tried reaching a route that doesn't exist."));
+
+app.listen(PORT, () =>console.log(`Server running on port: http://localhost:${PORT}`));
