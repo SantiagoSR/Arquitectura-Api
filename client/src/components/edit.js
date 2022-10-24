@@ -3,10 +3,11 @@ import { useParams, useNavigate } from "react-router";
  
 export default function Edit() {
  const [form, setForm] = useState({
-   name: "",
-   position: "",
-   level: "",
-   records: [],
+   seed: "",
+   volume: "",
+   crop: "",
+   date: "",
+   crops: [],
  });
  const params = useParams();
  const navigate = useNavigate();
@@ -22,14 +23,14 @@ export default function Edit() {
        return;
      }
  
-     const record = await response.json();
-     if (!record) {
-       window.alert(`Record with id ${id} not found`);
-       navigate("/");
+     const crop = await response.json();
+     if (!crop) {
+       window.alert(`Crop with id ${id} not found`);
+       navigate("/record");
        return;
      }
  
-     setForm(record);
+     setForm(crop);
    }
  
    fetchData();
@@ -46,16 +47,17 @@ export default function Edit() {
  
  async function onSubmit(e) {
    e.preventDefault();
-   const editedPerson = {
-     name: form.name,
-     position: form.position,
-     level: form.level,
+   const editedCrop = {
+     seed: form.seed,
+     volume: form.volume,
+     crop: form.crop,
+     date: form.date
    };
  
    // This will send a post request to update the data in the database.
-   await fetch(`http://localhost:5000/update/${params.id}`, {
+   await fetch(`http://localhost:5000/record/update/${params.id}`, {
      method: "POST",
-     body: JSON.stringify(editedPerson),
+     body: JSON.stringify(editedCrop),
      headers: {
        'Content-Type': 'application/json'
      },
@@ -67,72 +69,53 @@ export default function Edit() {
  // This following section will display the form that takes input from the user to update the data.
  return (
    <div>
-     <h3>Update Record</h3>
+     <h3>Update Crop</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="name">Name: </label>
+         <label htmlFor="seed">Seed: </label>
          <input
            type="text"
            className="form-control"
-           id="name"
-           value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
+           id="seed"
+           value={form.seed}
+           onChange={(e) => updateForm({ seed: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <label htmlFor="position">Position: </label>
+         <label htmlFor="volume">Volume: </label>
          <input
-           type="text"
+           type="number"
            className="form-control"
-           id="position"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           id="volume"
+           value={form.volume}
+           onChange={(e) => updateForm({ volume: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionIntern"
-             value="Intern"
-             checked={form.level === "Intern"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionJunior"
-             value="Junior"
-             checked={form.level === "Junior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionSenior"
-             value="Senior"
-             checked={form.level === "Senior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionSenior" className="form-check-label">Senior</label>
+         <label htmlFor="crop">Crop: </label>
+         <input
+           type="number"
+           className="form-control"
+           id="crop"
+           value={form.crop}
+           onChange={(e) => updateForm({ crop: e.target.value })}
+         />
        </div>
+       <div className="form-group">
+         <label htmlFor="date">Date: </label>
+         <input
+           type="date"
+           className="form-control"
+           id="date"
+           value={form.date}
+           onChange={(e) => updateForm({ date: e.target.value })}
+         />
        </div>
        <br />
- 
        <div className="form-group">
          <input
            type="submit"
-           value="Update Record"
+           value="Update Crop"
            className="btn btn-primary"
          />
        </div>

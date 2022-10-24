@@ -5,7 +5,7 @@ export default function Create() {
  const [form, setForm] = useState({
    seed: "",
    volume: "",
-   crops: "",
+   crop: "",
    date: "",
  });
  const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Create() {
  async function onSubmit(e) {
    e.preventDefault();
  
-   // When a post request is sent to the create url, we'll add a new record to the database.
+   // When a post request is sent to the create url, we'll add a new crop to the database.
    const newPerson = { ...form };
  
    await fetch("http://localhost:5000/record/add", {
@@ -36,17 +36,17 @@ export default function Create() {
      return;
    });
  
-   setForm({ seed: "", volume: "", crops: "" , date: ""});
+   setForm({ seed: "", volume: "", crop: "" , date: ""});
    navigate("/");
  }
  
  // This following section will display the form that takes the input from the user.
  return (
    <div>
-     <h3>Create New Record</h3>
+     <h3>Create New Crop</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="seed">Large</label>
+         <label htmlFor="seed">Seed</label>
          <input
            type="string"
            className="form-control"
@@ -56,7 +56,7 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="volume"> Width</label>
+         <label htmlFor="volume"> Volume</label>
          <input
            type="number"
            className="form-control"
@@ -66,13 +66,13 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="volume">Seed Space</label>
+         <label htmlFor="crop">Crop</label>
          <input
            type="number"
            className="form-control"
-           id="crops"
-           value={form.volume}
-           onChange={(e) => updateForm({ crops: e.target.value })}
+           id="crop"
+           value={form.crop}
+           onChange={(e) => updateForm({ crop: e.target.value })}
          />
        </div>
        <div className="form-group">
@@ -81,7 +81,7 @@ export default function Create() {
            type="date"
            className="form-control"
            id="date"
-           value={form.volume}
+           value={form.date}
            onChange={(e) => updateForm({ date: e.target.value })}
          />
        </div>

@@ -2,9 +2,6 @@
 import React from "react";
 
 function Home() {
-  const [data, setData] = React.useState(null);
-
-
   return (
     <div className="Home">
       <header className="Home-header">

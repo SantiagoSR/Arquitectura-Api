@@ -42,7 +42,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
  let myobj = {
    seed: req.body.seed,
    volume: req.body.volume,
-   crops: req.body.crops,
+   crop: req.body.crop,
    date: req.body.date,
  };
  db_connect.collection("crops").insertOne(myobj, function (err, res) {
@@ -59,7 +59,7 @@ recordRoutes.route("/record/update/:id").post(function (req, response) {
    $set: {
      seed: req.body.seed,
      volume: req.body.volume,
-     crops: req.body.crops,
+     crop: req.body.crop,
      date: req.body.date,
    },
  };
