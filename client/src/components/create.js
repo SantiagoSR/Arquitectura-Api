@@ -3,9 +3,10 @@ import { useNavigate } from "react-router";
  
 export default function Create() {
  const [form, setForm] = useState({
-   large: "",
-   width: "",
-   seed_space: "",
+   seed: "",
+   volume: "",
+   crops: "",
+   date: "",
  });
  const navigate = useNavigate();
  
@@ -35,7 +36,7 @@ export default function Create() {
      return;
    });
  
-   setForm({ large: "", width: "", seed_space: "" });
+   setForm({ seed: "", volume: "", crops: "" , date: ""});
    navigate("/");
  }
  
@@ -45,33 +46,43 @@ export default function Create() {
      <h3>Create New Record</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="large">Large</label>
+         <label htmlFor="seed">Large</label>
          <input
-           type="number"
+           type="string"
            className="form-control"
-           id="large"
-           value={form.large}
-           onChange={(e) => updateForm({ large: e.target.value })}
+           id="seed"
+           value={form.seed}
+           onChange={(e) => updateForm({ seed: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <label htmlFor="width"> Width</label>
+         <label htmlFor="volume"> Width</label>
          <input
            type="number"
            className="form-control"
-           id="width"
-           value={form.width}
-           onChange={(e) => updateForm({ width: e.target.value })}
+           id="volume"
+           value={form.volume}
+           onChange={(e) => updateForm({ volume: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <label htmlFor="width">Seed Space</label>
+         <label htmlFor="volume">Seed Space</label>
          <input
            type="number"
            className="form-control"
-           id="width"
-           value={form.width}
-           onChange={(e) => updateForm({ seed_space: e.target.value })}
+           id="crops"
+           value={form.volume}
+           onChange={(e) => updateForm({ crops: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="date">Date</label>
+         <input
+           type="date"
+           className="form-control"
+           id="date"
+           value={form.volume}
+           onChange={(e) => updateForm({ date: e.target.value })}
          />
        </div>
        <div className="form-group">

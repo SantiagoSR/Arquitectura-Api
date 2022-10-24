@@ -29,7 +29,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect
-   .collection("records")
+   .collection("crops")
    .findOne(myquery, function (err, result) {
      if (err) throw err;
      res.json(result);
@@ -40,29 +40,31 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
-   large: req.body.large,
-   width: req.body.width,
-   seed_space: req.body.seed_space,
+   seed: req.body.seed,
+   volume: req.body.volume,
+   crops: req.body.crops,
+   date: req.body.date,
  };
- db_connect.collection("records").insertOne(myobj, function (err, res) {
+ db_connect.collection("crops").insertOne(myobj, function (err, res) {
    if (err) throw err;
    response.json(res);
  });
 });
  
 // This section will help you update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
+recordRoutes.route("/record/update/:id").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
    $set: {
-     large: req.body.large,
-     width: req.body.width,
-     seed_space: req.body.seed_space,
+     seed: req.body.seed,
+     volume: req.body.volume,
+     crops: req.body.crops,
+     date: req.body.date,
    },
  };
  db_connect
-   .collection("records")
+   .collection("crops")
    .updateOne(myquery, newvalues, function (err, res) {
      if (err) throw err;
      console.log("1 document updated");
@@ -71,10 +73,10 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 });
  
 // This section will help you delete a record
-recordRoutes.route("/:id").delete((req, response) => {
+recordRoutes.route("/record/delete/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
- db_connect.collection("records").deleteOne(myquery, function (err, obj) {
+ db_connect.collection("crops").deleteOne(myquery, function (err, obj) {
    if (err) throw err;
    console.log("1 document deleted");
    response.json(obj);
