@@ -37,7 +37,7 @@ export default function Create() {
      return;
    });
  
-   setForm({ seed: "", volume: "", crop: "" , date: ""});
+   setForm({ namedoc: "", author: "", title: "", content:"", date: ""});
    navigate("/");
  }
  
@@ -77,11 +77,11 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="crop">Crop</label>
+         <label htmlFor="content">Content</label>
          <input
-           type="number"
+           type="string"
            className="form-control"
-           id="crop"
+           id="content"
            value={form.crop}
            onChange={(e) => updateForm({ crop: e.target.value })}
          />

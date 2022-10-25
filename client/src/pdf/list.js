@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
  
 const Crop = (props) => (
  <tr>
-   <td>{props.crop.seed}</td>
-   <td>{props.crop.volume}</td>
-   <td>{props.crop.crop}</td>
+   <td>{props.crop.namedoc}</td>
+   <td>{props.crop.author}</td>
+   <td>{props.crop.title}</td>
+   <td>{props.crop.content}</td>
    <td>{props.crop.date}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.crop._id}`}>Edit</Link> |

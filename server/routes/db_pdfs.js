@@ -54,7 +54,7 @@ recordRoutes.route("/pdflist/add").post(function (req, response) {
 });
  
 // This section will help you update a record by id.
-recordRoutes.route("/record/update/:id").post(function (req, response) {
+recordRoutes.route("/pdflist/update/:id").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
@@ -76,7 +76,7 @@ recordRoutes.route("/record/update/:id").post(function (req, response) {
 });
  
 // This section will help you delete a record
-recordRoutes.route("/record/delete/:id").delete((req, response) => {
+recordRoutes.route("/pdflist/delete/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect.collection("pdfs").deleteOne(myquery, function (err, obj) {

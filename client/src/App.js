@@ -9,7 +9,10 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Home from "./components/home";
-import PDFList from "./pdf/pdfList";
+import PDFList from "./pdf/list";
+import PDFCreation from "./pdf/create";
+import PDFEdit from "./pdf/edit";
+
  
 const App = () => {
  return (
@@ -21,6 +24,8 @@ const App = () => {
        <Route path="/edit/:id" element={<Edit />} />
        <Route path="/create" element={<Create />} />
        <Route path="/pdflist" element={<PDFList />} />
+       <Route path="/pdfcreation" element={<PDFCreation/>} />
+       <Route path="/pdfedit/:id" element={<PDFEdit/>} />
      </Routes>
    </div>
  );
