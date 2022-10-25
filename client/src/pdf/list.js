@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
  
-const Crop = (props) => (
+const Pdf = (props) => (
  <tr>
-   <td>{props.crop.namedoc}</td>
-   <td>{props.crop.author}</td>
-   <td>{props.crop.title}</td>
-   <td>{props.crop.content}</td>
-   <td>{props.crop.date}</td>
+   <td>{props.pdf.namedoc}</td>
+   <td>{props.pdf.author}</td>
+   <td>{props.pdf.title}</td>
+   <td>{props.pdf.date}</td>
    <td>
-     <Link className="btn btn-link" to={`/edit/${props.crop._id}`}>Edit</Link> |
+     <Link className="btn btn-link" to={`/pdfedit/${props.pdf._id}`}>Edit</Link> |
      <button className="btn btn-link"
        onClick={() => {
-         props.deleteCrop(props.crop._id);
+         props.deletePdf(props.pdf._id);
        }}
      >
        Delete
@@ -21,13 +20,13 @@ const Crop = (props) => (
  </tr>
 );
  
-export default function CropList() {
- const [crops, setCrops] = useState([]);
+export default function PDFList() {
+ const [pdfs, setPdfs] = useState([]);
  
- // This method fetches the crops from the database.
+ // This method fetches the pdfs from the database.
  useEffect(() => {
-   async function getCrops() {
-     const response = await fetch(`http://localhost:5000/record/`);
+   async function getPdfs() {
+     const response = await fetch(`http://localhost:5000/pdflist/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -35,39 +34,39 @@ export default function CropList() {
        return;
      }
  
-     const crops = await response.json();
-     setCrops(crops);
+     const pdfs = await response.json();
+     setPdfs(pdfs);
    }
  
-   getCrops();
+   getPdfs();
  
    return;
- }, [crops.length]);
+ }, [pdfs.length]);
  
- // This method will delete a crop
- async function deleteCrop(id) {
-   await fetch(`http://localhost:5000/record/delete/${id}`, {
+ // This method will delete a pdf
+ async function deletePdf(id) {
+   await fetch(`http://localhost:5000/pdflist/delete/${id}`, {
      method: "DELETE"
    });
  
-   const newCrops = crops.filter((el) => el._id !== id);
-   setCrops(newCrops);
+   const newPdfs = pdfs.filter((el) => el._id !== id);
+   setPdfs(newPdfs);
  }
  
- // This method will map out the crops on the table
- function cropList() {
-   return crops.map((crop) => {
+ // This method will map out the pdfs on the table
+ function pdfList() {
+   return pdfs.map((pdf) => {
      return (
-       <Crop
-         crop={crop}
-         deleteCrop={() => deleteCrop(crop._id)}
-         key={crop._id}
+       <Pdf
+         pdf={pdf}
+         deletePdf={() => deletePdf(pdf._id)}
+         key={pdf._id}
        />
      );
    });
  }
  
- // This following section will display the table with the crops of individuals.
+ // This following section will display the table with the pdfs of individuals.
  return (
    <div>
      <h3>PDF List</h3>
@@ -81,7 +80,7 @@ export default function CropList() {
            <th>Action</th>
          </tr>
        </thead>
-       <tbody>{cropList()}</tbody>
+       <tbody>{pdfList()}</tbody>
      </table>
    </div>
  );
