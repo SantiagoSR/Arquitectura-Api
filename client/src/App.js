@@ -9,6 +9,7 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Home from "./components/home";
+import PDFList from "./pdf/pdfList";
  
 const App = () => {
  return (
@@ -19,6 +20,7 @@ const App = () => {
        <Route path="/record" element={<RecordList />} />
        <Route path="/edit/:id" element={<Edit />} />
        <Route path="/create" element={<Create />} />
+       <Route path="/pdflist" element={<PDFList />} />
      </Routes>
    </div>
  );
