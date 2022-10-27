@@ -46,7 +46,7 @@ export default function CropList() {
  
  // This method will delete a crop
  async function deleteCrop(id) {
-   await fetch('http://'+backend+':5000/record/delete/${id}', {
+   await fetch(`http://`+backend+`:5000/record/delete/${id}`, {
      method: "DELETE"
    });
  
