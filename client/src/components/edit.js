@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
  
 export default function Edit() {
+  var backend = 'localhost'
  const [form, setForm] = useState({
    seed: "",
    volume: "",
@@ -15,7 +16,7 @@ export default function Edit() {
  useEffect(() => {
    async function fetchData() {
      const id = params.id.toString();
-     const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+     const response = await fetch('http://'+backend+':5000/record/${params.id.toString()}');
  
      if (!response.ok) {
        const message = `An error has occurred: ${response.statusText}`;
@@ -55,7 +56,7 @@ export default function Edit() {
    };
  
    // This will send a post request to update the data in the database.
-   await fetch(`http://localhost:5000/record/update/${params.id}`, {
+   await fetch('http://'+backend+':5000/record/update/${params.id}', {
      method: "POST",
      body: JSON.stringify(editedCrop),
      headers: {

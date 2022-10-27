@@ -18,12 +18,11 @@ RUN bash nodesource_setup.sh
 
 RUN apt-get install nodejs -y
 
-RUN curl https://www.npmjs.com/install.sh | sudo sh
-
 COPY . /home/app
 
 RUN npm install bootstrap react-router-dom
 
-EXPOSE 3030
+EXPOSE 5000
+EXPOSE 3000
 
 CMD ["npm","start"]

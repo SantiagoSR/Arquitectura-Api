@@ -38,6 +38,6 @@ COPY . /home/app
 # RUN chmod +x /wait
 
 EXPOSE 27017
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["npm","start"]

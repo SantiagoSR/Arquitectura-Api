@@ -1,4 +1,3 @@
-
 import React from "react";
 
 function Home() {
@@ -6,7 +5,7 @@ function Home() {
     <div className="Home">
       <header className="Home-header">
         <body>
-            <h1> Bienvenidos a la pagina</h1>
+            <h1> Bienvenido a la pagina</h1>
         </body>
       </header>
     </div>

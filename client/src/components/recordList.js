@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
- 
+
+var backend = 'localhost'
 const Crop = (props) => (
  <tr>
    <td>{props.crop.seed}</td>
@@ -26,7 +27,7 @@ export default function CropList() {
  // This method fetches the crops from the database.
  useEffect(() => {
    async function getCrops() {
-     const response = await fetch(`http://localhost:5000/record/`);
+     const response = await fetch('http://'+backend+':5000/record/');
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -45,7 +46,7 @@ export default function CropList() {
  
  // This method will delete a crop
  async function deleteCrop(id) {
-   await fetch(`http://localhost:5000/record/delete/${id}`, {
+   await fetch('http://'+backend+':5000/record/delete/${id}', {
      method: "DELETE"
    });
  
