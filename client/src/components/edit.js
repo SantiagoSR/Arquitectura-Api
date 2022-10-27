@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
  
 export default function Edit() {
-  var backend = 'localhost'
+  var backend = 'api'
  const [form, setForm] = useState({
    seed: "",
    volume: "",
