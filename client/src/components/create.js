@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
  
 export default function Create() {
 
-var backend = 'api'
+var backend = '34.168.119.233'
  const [form, setForm] = useState({
    seed: "",
    volume: "",

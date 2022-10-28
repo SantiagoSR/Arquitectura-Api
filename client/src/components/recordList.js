@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-var backend = 'api'
+var backend = '34.168.119.233'
 const Crop = (props) => (
  <tr>
    <td>{props.crop.seed}</td>
